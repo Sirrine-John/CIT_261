@@ -1,0 +1,27 @@
+CHAPTER 2
+An Expression is a line of code that produces a value.
+A statement is information that "Affects the World" and is kept on a line in the code
+Bindings are also known as Variables
+"LET" can set multiple Variables
+var = Variables || const = Constants
+
+CHAPTER 3
+Functions is a variable with code behind it
+Scope goes from the top down, code inside can see what is above it but code outside cannot see what is inside Functions
+If you use "function" to declare a function, then it is available anywhere in the code.  Other function variables work in a "top down" fasion
+Arrow functions work nearly the same as "function" expressions
+Be carefull not to make infinate loops:
+    function chicken() {
+        return egg();
+    }
+    function egg() {
+        return chicken();
+        }
+    console.log(chicken() + " came first.");
+    // → ??
+**Recursive functions need "RETURN" in front of the recursive call.
+
+CHAPTER 4
+Comparing objects using == compares the "identity" of the object, not its values
+You cannot add properties to "string" "number" or "boolean" variables
+"Math" contains many mathimatical functions that we can use for calculations
