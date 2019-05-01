@@ -1,0 +1,10 @@
+Mobile UX
+
+Write for mobile first - it is the best way to ensure that the simplicity remains in your program.
+Most users will have mobile and will go there first and you want them to have a good first impression.
+Keep menus in easy to reach locations 
+Make things that matter quick.  TIME IS MONEY to consumers
+SVG/Webfonts and optimize and Minify your CSS and JS
+Minimize forms, if needed paginate to reduce intimidation
+Keep ads non-invasive.  NEVER USE POPUPS or POPOVERS
+Make content the priority on the page

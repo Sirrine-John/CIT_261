@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<title>"Web-page Title"</title>
+		<script>
+			<!--JAVASCRIPT ELEMENTS GO HERE-->
+			function auto_fill_section(){
+				var sectionID = document.getElementById("auto_section")
+				var aNote = "This is the note that I want to fill into the bottom section of the page.  This should auto populate when the page loads automatically.<p>If it doesn't there is an issue with the code.</p>"
+				sectionID.innerHTML = "<hr><hr>" + aNote
+				array_list()
+				showAllNotes()
+			}
+			<!--This function is called by the preceding function and uses a for loop to loop through values-->
+			function array_list(){
+				var array_of_things = [1, 2, 3, "One", "Two", "Three"]
+				var sectionID = document.getElementById("auto_section")
+				for(var i = 0; i < array_of_things.length; i ++){
+					if (i == 0){sectionID.innerHTML += "<hr><hr><li>" + array_of_things[i] + "</li>"}
+					else if (i == array_of_things.length-1){sectionID.innerHTML += "<li>" + array_of_things[i] + "</li>"}
+					else{sectionID.innerHTML += "<li>" + array_of_things[i] + "</li>"}
+				}
+				sectionID.innerHTML += "<hr><hr>Finished"
+			}
+			<!--This function takes the current date and time plus the note description and the text in the textarea and pushes it into the local storage-->
+			function saveNote(){
+				var currentDateAndTime = new Date()
+				var aNoteDescription = document.getElementById("identifies_the_input_box").value
+				var aNoteText = document.getElementById("text_area_ID").value
+				var aCompleteNote = currentDateAndTime.toLocaleString()
+				+ "--" + aNoteDescription
+				aCompleteNote += "<p>" + aNoteText + "</p>"
+
+				var storedNotesString = localStorage.getItem("all_notes")
+				var allNotes = JSON.parse(storedNotesString)
+				if(allNotes == null){
+					allNotes = []
+				}
+				if (aNoteText != ""){allNotes.push(aCompleteNote)}
+				var allNotesString = JSON.stringify(allNotes)
+				localStorage.setItem("all_notes", allNotesString)
+				showAllNotes()
+			}
+			<!--This function retrieves the item called "all_notes" from local storage and then displays the contents inside a section on the page-->
+			function showAllNotes(){
+				var storedNotesString = localStorage.getItem("all_notes")
+				var allNotes = JSON.parse(storedNotesString)
+				if(allNotes != null){
+					var noteDisplayer = document.getElementById("notes_display")
+					noteDisplayer.innerHTML = null
+					var numberOfNotes = allNotes.length
+					for (var i = 0; i < numberOfNotes; i++) {
+						if (i == 0){noteDisplayer.innerHTML += "<hr><hr>"}
+						var aNote = allNotes[i]
+						noteDisplayer.innerHTML += "<hr><p>" + aNote + "</p>"
+					}
+				}
+			}
+		</script>
+		<style>
+			<!--CSS ELEMENTS GO HERE
+			The '#' character identifies a specific ID element on the page-->
+			input{
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px #666666 inset;
+			height: 25px;
+			width: 200px;
+			text-indent: 5px;
+			}
+			input:focus{
+			outline:none;
+			}
+			#identifies_the_input_box{
+			width: 500px;
+			padding-left: 5px;
+			border:none;
+			border-radius:5px;
+			box-shadow:0px 0px 5px #666666 inset;
+			text-indent:5px;
+			}
+			textarea{
+			margin-top: 10px;
+			border:none;
+			border-radius:5px;
+			box-shadow:0px 0px 5px #666666 inset;
+			width:90%;
+			height: 50px;
+			text-indent:5px;
+			resize:none;
+			overflow:scroll;
+			}
+		</style>
+	</head>
+	<!--onload will call javascript functions as the page is loading-->
+	<body onload="auto_fill_section()">
+	<section id="identifies_the_section">
+		<h1>Header 1</h1>
+		<h2>Header 2</h2>
+		<h3>Header 3</h3>
+		<h4>Header 4</h4>
+		<h5>Header 5</h5>
+		<h6>Header 6</h6>
+		Label in front of input box: <input id="identifies_the_input_box"></input>
+		<textarea id="text_area_ID" placeholder="This text is inside the textbox as a placeholder until other text is entered in."></textarea>
+		<button onclick="saveNote()">Save</button>
+	</section>
+	<section id="notes_display"></section>
+	<section id="auto_section"></section>
+	</body>
+</html>
