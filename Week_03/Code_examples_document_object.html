@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My home page</title>
+  </head>
+  <h2>Nodes</h2>
+  <blockquote id="quote">
+        No book can ever be finished. While working on it we learn
+        just enough to find it immature the moment we turn away
+        from it.
+      </blockquote>
+      
+      <script>
+        function elt(type, ...children) {
+          let node = document.createElement(type);
+          for (let child of children) {
+            if (typeof child != "string") node.appendChild(child);
+            else node.appendChild(document.createTextNode(child));
+          }
+          return node;
+        }
+      
+        document.getElementById("quote").appendChild(
+          elt("footer", "—",
+              elt("strong", "Karl Popper"),
+              ", preface to the second editon of ",
+              elt("em", "The Open Society and Its Enemies"),
+              ", 1950"));
+      </script>
+<h2>Layout</h2>
+<p style="border: 3px solid red">
+        I'm boxed in
+      </p>
+      
+      <script>
+        let para = document.body.getElementsByTagName("p")[0];
+        console.log("clientHeight:", para.clientHeight);
+        console.log("offsetHeight:", para.offsetHeight);
+      </script>
+<h2>Clever Layout</h2>
+<p><span id="one"></span></p>
+<p><span id="two"></span></p>
+
+<script>
+  function time(name, action) {
+    let start = Date.now(); // Current time in milliseconds
+    action();
+    console.log(name, "took", Date.now() - start, "ms");
+  }
+
+  time("naive", () => {
+    let target = document.getElementById("one");
+    while (target.offsetWidth < 2000) {
+      target.appendChild(document.createTextNode("X"));
+    }
+  });
+  // → naive took 32 ms
+
+  time("clever", function() {
+    let target = document.getElementById("two");
+    target.appendChild(document.createTextNode("XXXXX"));
+    let total = Math.ceil(2000 / (target.offsetWidth / 5));
+    target.firstChild.nodeValue = "X".repeat(total);
+  });
+  // → clever took 1 ms
+</script>
+<h2>CSS</h2>
+<p id="para" style="color: purple">
+        Nice text
+      </p>
+      
+      <script>
+        para = document.getElementById("para");
+        console.log(para.style.color);
+        para.style.color = "magenta";
+      </script>
+<style>
+        strong {
+          font-style: italic;
+          color: gray;
+        }
+        .subtle {
+            color: gray;
+            font-size: 80%;
+        }
+        #header {
+          background: blue;
+          color: white;
+        }
+/* p elements with id main and with classes a and b */
+        p#main.a.b {
+          margin-bottom: 20px;
+        }
+      </style>
+      <p>Now <strong>strong text</strong> is italic and gray.</p>
+
+<H2>QUERY SELECTORS</H2>
+      <p>And if you go chasing
+            <span class="animal">rabbits</span></p>
+          <p>And you know you're going to fall</p>
+          <p>Tell 'em a <span class="character">hookah smoking
+            <span class="animal">caterpillar</span></span></p>
+          <p>Has given you the call</p>
+          
+          <script>
+            function count(selector) {
+              return document.querySelectorAll(selector).length;
+            }
+            console.log(count("p"));           // All <p> elements
+            // → 4
+            console.log(count(".animal"));     // Class animal
+            // → 2
+            console.log(count("p .animal"));   // Animal inside of <p>
+            // → 2
+            console.log(count("p > .animal")); // Direct child of <p>
+            // → 1
+          </script>
+
+    <h2>Positioning and Animating</h2>
+
+    <br><p style="text-align: left; padding-left: 50px">
+            <img src="HOTTIE.PNG" style="position: relative">
+          </p>
+          <script>
+            let cat = document.querySelector("img");
+            let angle = Math.PI / 2;
+            function animate(time, lastTime) {
+              if (lastTime != null) {
+                angle += (time - lastTime) * 0.002;
+              }
+              cat.style.top = (Math.sin(angle) * 30) + "px";
+              cat.style.left = (Math.cos(angle) * 40) + "px";
+              requestAnimationFrame(newTime => animate(newTime, time));
+            }
+            requestAnimationFrame(animate);
+          </script>
+</html>
