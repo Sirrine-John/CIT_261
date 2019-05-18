@@ -10,6 +10,7 @@ function logToConsole(fName, lName, iNum){
 
 logToConsole(firstName,lastName,iNumber);
 
+//CLASS CREATION
 class Student{
     constructor(firstName,lastName,iNumber){
         this.firstName = firstName;
@@ -23,6 +24,7 @@ class Student{
     }
 }
 
+//CLASS IMPLEMENTATION
 let student1 = new Student(firstName,lastName,iNumber);
 let student2 = new Student("John","Sirrine","987654321");
 let student3 = student2;
