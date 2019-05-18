@@ -1,0 +1,6 @@
+Most of these 2 chapters are streight forward.
+THe only thing I am having issues wrapping my head around is how to
+    use and manipulate the CommonJs and ECMASCRIPT modules
+I understand the idea of importing the modules to use thier functions
+    I am having a little difficulty with the export functionality
+    and if you can create your own modules with this

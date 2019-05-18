@@ -41,3 +41,7 @@ console.log(plusOne(4));
 //   return require.cache[name].exports;
 // }
 
+const {parse} = require("ini");
+
+console.log(parse("x = 10\ny = 20"));
+// → {x: "10", y: "20"}
