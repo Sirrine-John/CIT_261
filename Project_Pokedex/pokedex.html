@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pokedex</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <style>
+    table{margin: 0 auto;background-color: whitesmoke;
+    border-style: ridge; border-width: medium;}
+    .right{width: 68%;}
+    .left{width: 32%;}
+    .buttons{margin: 0 auto;}
+    body{margin: 15%; background-color: red;}
+    .img-container{height: 124px; margin: 0 auto; text-align: center; width: 150px;
+    background-color:beige; border-style: groove; border-width: thick;}
+    </style>
+</head>
+<body onload="collectData()">
+    <section id="show-img" class=img-container></section>
+    <section  id="show-data"></section>
+    <section class="buttons">
+        <button onclick="countDown()">previous</button>
+        <button onclick="countUp()" style="float: right;">next</button>
+    </section>
+    <script src="./GetPokemonData.js"></script>
+</body>
+</html>
