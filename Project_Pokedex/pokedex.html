@@ -9,20 +9,26 @@
     <style>
     table{margin: 0 auto;background-color: whitesmoke;
     border-style: ridge; border-width: medium;}
+    h1{font-size: xx-large;}
     .right{width: 68%;}
     .left{width: 32%;}
     .buttons{margin: 0 auto;}
-    body{margin: 15%; background-color: red;}
+    body{margin: 15%; background-color: red; margin-top: 0%;}
     .img-container{height: 124px; margin: 0 auto; text-align: center; width: 150px;
     background-color:beige; border-style: groove; border-width: thick;}
+    textarea{height: 14px;}
     </style>
 </head>
 <body onload="collectData()">
+    <section style="height: 62px; text-align: center;"><h1>P&oacute;kedex</h1></section>
     <section id="show-img" class=img-container></section>
     <section  id="show-data"></section>
     <section class="buttons">
         <button onclick="countDown()">previous</button>
         <button onclick="countUp()" style="float: right;">next</button>
+        <br>
+        <textarea id="selection-box" style="vertical-align: bottom; width: 70%; margin-top: 5px;" placeholder="P&oacute;kemon Number"></textarea>
+        <button  onclick="selectedChange()" style="float: right; margin-top: 5px;">Search</button>
     </section>
     <script src="./GetPokemonData.js"></script>
 </body>

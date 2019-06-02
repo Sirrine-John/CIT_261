@@ -20,7 +20,18 @@ function collectData() {
 
 function pokemonOut(){
     console.log(pokemonList);
-}
+};
+
+function selectedChange(){
+  let textArea = document.getElementById("selection-box");
+  if (parseInt(textArea.value) > 0 && parseInt(textArea.value) < pokemonList.length+1){
+    printSinglePokemon(pokemonList.filter(pokemon => pokemon.num == parseInt(textArea.value)));
+  }
+  else{
+    textArea.value = '';
+    textArea.setAttribute("placeholder","Try Again. 1 - "+pokemonList.length);
+  };
+};
 
 function printSinglePokemon(selection){
   currentPokemon = selection;
