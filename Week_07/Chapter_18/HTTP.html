@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form method="GET" action="message.html">
+        <p>Name: <input type="text" name="name"></p>
+        <p>Message:<br><textarea name="message"></textarea></p>
+        <p><button type="submit">Send</button></p>
+      </form>
+      <br><br>
+
+      <form id="submitForm" action="submit.html">
+        Name: <input type="text" name="name"><br>
+        Password: <input type="password" name="password"><br>
+        <button type="submit">Log in</button>
+      </form>
+      <script>
+        let formSubmit = document.getElementById("submitForm");
+        console.log(formSubmit.elements[1].type);
+        // → password
+        console.log(formSubmit.elements.password.type);
+        // → password
+        console.log(formSubmit.elements.name.form == formSubmit);
+        // → true
+      </script>
+      <br><br>
+
+
+<form id="submitSave" action="submit.html">
+    Value: <input type="text" name="value">
+    <button type="submitSave">Save</button>
+  </form>
+  <script>
+    let formSubmitSave = document.getElementById("submitSave");
+    formSubmitSave.addEventListener("submitSave", event => {
+      console.log("Saving value", formSubmitSave.elements.value.value);
+      event.preventDefault();
+    });
+  </script>
+      <br><br>
+      <br><br>
+
+<textarea id=effTWO></textarea>
+<script>
+  let textarea = document.getElementById("effTWO");
+  textarea.addEventListener("keydown", event => {
+    // The key code for F2 happens to be 113
+    if (event.keyCode == 113) {
+      replaceSelection(textarea, "Khasekhemwy");
+      event.preventDefault();
+    }
+  });
+  function replaceSelection(field, word) {
+    let from = field.selectionStart, to = field.selectionEnd;
+    field.value = field.value.slice(0, from) + word +
+                  field.value.slice(to);
+    // Put the cursor after the word
+    field.selectionStart = from + word.length;
+    field.selectionEnd = from + word.length;
+  }
+</script>
+<br><br>
+
+<input id=txtLen type="text"> length: <span id="length">0</span>
+<script>
+  let text = document.querySelector("#txtLen");
+  let output = document.querySelector("#length");
+  text.addEventListener("input", () => {
+    output.textContent = text.value.length;
+  });
+</script>
+<br><br>
+
+<select id="multiSelect" multiple style="    height: 138px;">
+    <option value="1">0001</option>
+    <option value="2">0010</option>
+    <option value="3">0011</option>
+    <option value="4">0100</option>
+    <option value="5">0101</option>
+    <option value="6">0110</option>
+    <option value="7">0111</option>
+    <option value="8">1000</option>
+  </select> = <span id="outputSelect">0</span>
+  <script>
+    let select = document.querySelector("#multiSelect");
+    let outputSelect = document.querySelector("#outputSelect");
+    select.addEventListener("change", () => {
+      let number = 0;
+      for (let option of Array.from(select.options)) {
+        if (option.selected) {
+          number += Number(option.value);
+        }
+      }
+      outputSelect.textContent = number;
+    });
+  </script>
+
+</body>
+</html>
