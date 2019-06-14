@@ -8,14 +8,15 @@ let showData = document.getElementById("show-data");
 let showImg = document.getElementById("show-img");
 
 function collectData() {
+    showData.innerHTML = 'Loading the Pokedex, Please Wait.';
     $.getJSON('https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json',
         function (data) {
           pokemonList = data.pokemon;
-        //pokemonOut();
-        printSinglePokemon(pokemonList.filter(pokemon => pokemon.num == 1));
-          }
+          //pokemonOut();
+          printSinglePokemon(pokemonList.filter(pokemon => pokemon.num == 1));
+          preloadImages();
+        }
     );
-    showData.innerHTML = 'Loading the Pokedex, Please Wait.';
   };
 
 function pokemonOut(){
@@ -161,6 +162,8 @@ function printArray(array){
 function getImage(source){
   let img = document.createElement("img");
   img.setAttribute("src",source);
+  img.setAttribute("id","pokeImage")
+  img.setAttribute("class", "fadein")
   showImg.innerHTML = "";
   showImg.appendChild(img);
 }
@@ -171,11 +174,24 @@ function selectedPokemonChange(number){
 
 function countUp(){
   let currentNum = currentPokemon[0].id;
-  if (currentNum < pokemonList.length){return selectedPokemonChange(currentNum+1)}
-  else{return selectedPokemonChange(1)};
+  document.getElementById("pokeImage").className = "fadeout";
+  setTimeout(function(){
+    if (currentNum < pokemonList.length){return selectedPokemonChange(currentNum+1)}
+    else{return selectedPokemonChange(1)};}, 450);
 }
 function countDown(){
   let currentNum = currentPokemon[0].id;
-  if (currentNum > 1){return selectedPokemonChange(currentNum-1)}
-  else{return selectedPokemonChange(pokemonList.length)};
+  document.getElementById("pokeImage").className = "fadeout";
+  setTimeout(function(){
+    if (currentNum > 1){return selectedPokemonChange(currentNum-1)}
+  else{return selectedPokemonChange(pokemonList.length)};}, 450);
+}
+
+function preloadImages(){
+  let hiddenIMG = document.getElementById("preloadHiddenDiv");
+  pokemonList.forEach(thisPokemon => {
+  let img = document.createElement("img");
+  img.setAttribute("src", thisPokemon.img);
+  hiddenIMG.appendChild(img)})
+  hiddenIMG.innerHTML = "";
 }
