@@ -1,11 +1,16 @@
 Purpose
+    To help someone research and determine the best Pokemon to use in a specific battle situation.
+    I want to expand on my lookup i did for the first Block and bring in more information and a greater level of detail.
+    I want to be able to save a user's list of Captured Pokemon and then select the top ones from thier list that would do well against another Pokemon in battle.
+    I want it to look a lot more polished than the current one as well with mobile friendly buttons and possibly swipe capabilities.
 Audience
+    Pokemon fans. People that either play the Pokemon card game or the Pokemon Go App for mobile
 Data sources
-    External API
-    localStorage
-    local JSON file.
-    etc
+    External API - Pokemon API
+    localStorage - save user preferences and saved data into local browser storage
+    local JSON file. - possibly store data pulled from the API into a local JSON file so I don't have to query every time
 Initial Module list
-Wireframes for each view of your application
-Colors/Typography/specific Element styling
-Schedule to provide yourself mile markers along the way to help you stay on target.
+Wireframes for each view of your application - I will still have to work that up.  I am thinking at least 4-5 pages.  Lookup basic info. All Details. User Pokemon. Suggestion list.
+Colors/Typography/specific Element styling - Need to stick to the "Pokemon" themed colors of Red, White, Blue, Yellow, Black.  All very eye popping colors, not subtle at all.
+
+Schedule to provide yourself mile markers along the way to help you stay on target. - Still have to work on getting a schedule worked up to finish my tasks.  I plan on laying out the different portions and attacking one piece at a time.  Data pull from API, then input, then JSON storage and retreval, then suggestion pokemon comparison, then Front end design.

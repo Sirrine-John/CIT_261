@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" style="min-height: 100%; min-width: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div id="touchsurface" style="margin: auto; height: 800px; width: 80%">Swipe Me</div>
+    <script>
+ 
+        window.addEventListener('load', function(){
+         
+            var touchsurface = document.getElementById('touchsurface'),
+                startX,
+                startY,
+                dist,
+                threshold = 120, //required min distance traveled to be considered swipe
+                allowedTime = 250, // maximum time allowed to travel that distance
+                elapsedTime,
+                startTime
+         
+            function handleswipe(isswipe){
+                if (isswipe === 'right')
+                    touchsurface.innerHTML = 'Congrats, you\'ve made a <span style="color:red; font-size: 22px;">RIGHT</span> swipe!'
+                else if (isswipe === 'left')
+                    touchsurface.innerHTML = 'Congrats, you\'ve made a <span style="color:red; font-size: 22px;">LEFT</span> swipe!'
+                else{
+                    touchsurface.innerHTML = 'Condition for swipe not met yet'
+                }
+            }
+            function rightOrLeft(touchobj){
+                console.log("elapsed = "+elapsedTime);
+                console.log("allowed = "+allowedTime);
+                console.log("dist = "+dist);
+                console.log("threshold = "+threshold);
+                console.log(""+Math.abs(touchobj.pageY - startY));
+                if (elapsedTime <= allowedTime && dist >= threshold && Math.abs(touchobj.pageY - startY) <= 100){return 'right'}
+                else if(elapsedTime <= allowedTime && dist <= (threshold*-1) && Math.abs(touchobj.pageY - startY) <= 100){return 'left'}
+                else{return false}
+            }
+         
+            touchsurface.addEventListener('touchstart', function(e){
+                touchsurface.innerHTML = ''
+                var touchobj = e.changedTouches[0]
+                dist = 0
+                startX = touchobj.pageX
+                startY = touchobj.pageY
+                startTime = new Date().getTime() // record time when finger first makes contact with surface
+                e.preventDefault()
+            }, false)
+         
+            touchsurface.addEventListener('touchmove', function(e){
+                e.preventDefault() // prevent scrolling when inside DIV
+            }, false)
+         
+            touchsurface.addEventListener('touchend', function(e){
+                var touchobj = e.changedTouches[0]
+                dist = touchobj.pageX - startX // get total dist traveled by finger while in contact with surface
+                elapsedTime = new Date().getTime() - startTime // get time elapsed
+                // check that elapsed time is within specified, horizontal dist traveled >= threshold, and vertical dist traveled <= 100
+                var swiperightBol = rightOrLeft(touchobj);
+                console.log(swiperightBol);
+                handleswipe(swiperightBol);
+                e.preventDefault()
+            }, false)
+         
+        }, false) // end window.onload
+        </script>
+         
+</body>
+</html>
