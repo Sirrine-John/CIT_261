@@ -9,6 +9,7 @@
   cx1.lineTo(0, 50);
   cx1.lineTo(100, 50);
   cx1.lineTo(75, 0);
+  cx1.fillStyle = "lightblue";
   cx1.fill();
 
   cx2.beginPath();
@@ -16,6 +17,7 @@
   cx2.lineTo(50, 100);
   cx2.lineTo(100, 50);
   cx2.lineTo(50, 0);
+  cx2.fillStyle = "red";
   cx2.fill();
 
   cx3.beginPath();
