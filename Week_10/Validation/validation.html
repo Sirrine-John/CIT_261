@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Validation</title>
+    <link rel="stylesheet" href="./validation.css">
+</head>
+<body>
+    <form>
+        <label for="choose">Would you prefer a banana or a cherry?</label>
+        <input type="text" id="choose" name="i_like" required pattern="banana|cherry">
+        <button>Submit</button>
+    </form>
+    <form>
+        <label for="choosetext">Enter a tweet</label>
+        <textarea rows="4" cols="50" id="choosetext" name="i_love" required minlength="1" maxlength="150"></textarea>
+        <button>Submit</button>
+    </form>
+    <form>
+        <label for="choosenumber">Enter a number between 25 and 100</label>
+        <input type="number" id="choosenumber" name="i_want_some_more_of_it" required min="25" max="100">
+        <button>Submit</button>
+    </form>
+    <form>
+        <label for="mail1">I would like you to provide me an e-mail</label>
+        <input type="email" id="mail1" name="mail1">
+        <button>Submit</button>
+      </form>
+      <br><br>
+      <form id="mform" novalidate>
+        <p>
+          <label for="mail2">
+            <span>Please enter an email address:</span>
+            <input type="email" id="mail2" name="mail2">
+            <span class="error" aria-live="polite"></span>
+          </label>
+        </p>
+        <button>Submit</button>
+      </form>
+
+      <script src="./validation.js"></script>
+</body>
+</html>
