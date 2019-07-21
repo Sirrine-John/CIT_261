@@ -5,8 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pok&#233;dex</title>
+    <link rel="stylesheet" href="./Pokedex.css">
 </head>
-<body>
-    
+<body onload="collectData()">
+    <div id="touchsurface">
+            <section style="height: 62px; text-align: center;"><h1>P&oacute;kedex</h1></section>
+            <section id="show-img" class=img-container></section>
+            <section  id="show-data"></section>
+            <br>
+            <div id="slectionDiv" style="text-align: center;">
+                <input id="selection-box" style="margin: 0 auto; font-size: x-large; width: 200px;" placeholder="P&oacute;kemon Number"></input><br>
+                <button  onclick="selectedChange()" style="margin-top: 5px; margin: 0 auto;">Search</button>
+            </div>
+            <div id="preloadHiddenDiv"></div>
+            </section>
+            <br><br>
+            <section id="pokemonSave">
+                Add Pokemon to personal Collection?<input type="checkbox" name="addToList" id="addToList" onchange="enableInput()"><br>
+                Pok&#233;mon's Name:  <input type="text" id="PFriendlyName" disabled><br>
+                Combat Power:    <input type="number" id="CP" disabled><br>
+                <button onclick="saveLocal()">Save</button>
+            </section>
+            <div id="preloadHiddenDiv"></div>
+            <div class="navbar">
+                    <a href="./Pokedex.html">Pok&#233;dex</a>
+                    <a href="./MyPokeList.html">My List</a>
+                    </div>
+            </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="./GetPokemonData.js"></script>
+    <script src="./Swipe.js"></script>
+    <script src="./LocalStorage.js"></script>
 </body>
 </html>
